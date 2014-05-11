@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Some facts about ng-repeat</title>
+	</head>
+	<body ng-app="drpicox.NgRepeat" ng-controller="ListController">
+
+		<p>
+			Experiment to know how many times link function is called, and
+			how dom elements are preserved when track by is varying.
+		</p>
+
+		<div ng-init="trackBy = 'index'">
+			<select ng-model="trackBy">
+				<option value="none">none</option>
+				<option value="index">$index</option>
+				<option value="id">id</option>
+			</select>
+		</div>
+
+		<button ng-click="list.add()"> + </button>
+
+		<div ng-if="trackBy === 'none'">
+			<div item-form-view='item' list='list' ng-repeat='item in list.items'></div>
+		</div>
+
+		<div ng-if="trackBy === 'index'">
+			<div item-form-view='item' list='list' ng-repeat='item in list.items track by $index'></div>
+		</div>
+
+		<div ng-if="trackBy === 'id'">
+			<div item-form-view='item' list='list' ng-repeat='item in list.items track by item.id'></div>
+		</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+		<script src="Application.js"></script>
+		<script src="ItemModel.js"></script>
+		<script src="ItemFormDirective.js"></script>
+		<script src="ListModel.js"></script>
+		<script src="ListController.js"></script>
+		
+	</body>
+</html>
